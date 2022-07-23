@@ -4,7 +4,9 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
 // mongoose.connect()
-
+mongoose.connect(process.env.MONGO_STRING, function(){
+    console.log('connected to DB')
+})
 
 
 app.options('*', cors())
@@ -12,7 +14,7 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use('/patients', require('./controllers/patientsController.js'))
-app.use'/md', require('./controllers/mdController.js')
+app.use('/', require('./controllers/mdController.js'))
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'Welcome to the home route for House Calls'
