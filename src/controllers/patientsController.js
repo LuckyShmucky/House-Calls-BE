@@ -6,3 +6,5 @@ router.get('/', (req, res) => {
         message: "route for patients"
     })
 })
+
+module.exports = router
