@@ -14,8 +14,8 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use('/patients', require('./controllers/patientsController.js'))
+app.use('/medical-provider', require('./controllers/mdController.js'))
 
-app.use('/md', require('./controllers/mdController.js'))
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'Welcome to the home route for House Calls'
