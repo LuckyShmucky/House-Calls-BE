@@ -7,7 +7,7 @@ const medicalDoctorSchema = new Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true },
-    hasMedicalLicense: { type: Boolean, required: true },
+    NPIMedicalLicense: { type: Number, min: 1000000000, max: 9999999999},
   },
   { toJSON: { virtuals: true } }
 );
