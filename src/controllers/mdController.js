@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Provider = require('../models/medicalDoctor')
 
-router.get('/medical-provider', (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).json({
         message: "medical doctor"
     })
