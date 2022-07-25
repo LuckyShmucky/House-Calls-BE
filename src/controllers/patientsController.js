@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Patient = require('../models/patient')
 const bcrypt = require('bcrypt')
+const { findById } = require('../models/patient')
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -24,6 +25,34 @@ router.post('/', async (req, res) => {
         })
     } catch(err){
         console.log(err)
+        res.status(400).json({
+            message: `${err} occured`
+        })
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletedPatient = await Patient.findById(req.params.id)
+        deletedPatient.delete()
+        res.status(200).json({
+            message: `${deletedPatient} deleted`
+        })
+    } catch(err){
+        console.log(err)
+        res.status(400).json({
+            message: `${err} occured`
+        })
+    }
+})
+
+router.get('/:id', async (req, res) => {
+    try {
+        const foundPatient = await Patient.findById(req.params.id)
+        res.status(200).json({
+            message: `${foundPatient} found`
+        })
+    } catch(err){
         res.status(400).json({
             message: `${err} occured`
         })
