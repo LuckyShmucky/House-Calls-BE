@@ -12,7 +12,7 @@ House Calls is an application for people who would like access to a doctor but d
 ## patients route 
 ##### localhost:4000/patients
 
-- if you are using a read method this route will return a basica json object with a message letting you know that you have hit the correct route
+- if you are using a read method this route will return a basic json object with a message letting you know that you have hit the correct route
 - This route can be used to create a new patient with a post request and the correct request body
 
 ##### localhost:4000/patients/:id
