@@ -17,7 +17,7 @@ House Calls is an application for people who would like access to a doctor but d
 
 ##### localhost:4000/patients/:id
 
-- This route can be used to update or delete a patient in the DB when (pass patient id in req params
+- This route can be used to update or delete a patient in the DB when (pass patient id in req params)
 
 ## medical doctors route 
 
