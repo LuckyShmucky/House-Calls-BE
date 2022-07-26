@@ -53,20 +53,20 @@ router.delete('/:id', async (req, res) => {
 
 
 // gets a patient by their email
-router.get('/:email', async (req, res) => {
-    if (req.params.email === false) return;
-    try {
-        const foundPatient = await Patient.findOne({ email: req.params.email })
-        if (!foundPatient || !await bcrypt.compare(req.body.password))
-        res.status(200).json({
-            message: `${foundPatient} found`
-        })
-    } catch(err){
-        res.status(400).json({
-            message: `${err} occured`
-        })
-    }
-})
+// router.get('/:email', async (req, res) => {
+//     if (req.params.email === false) return;
+//     try {
+//         const foundPatient = await Patient.findOne({ email: req.params.email })
+//         if (!foundPatient || !await bcrypt.compare(req.body.password))
+//         res.status(200).json({
+//             message: `${foundPatient} found`
+//         })
+//     } catch(err){
+//         res.status(400).json({
+//             message: `${err} occured`
+//         })
+//     }
+// })
 
 // finds a patient by id and updates it by setting it to the request body
 router.put('/:id', async (req, res) => {
