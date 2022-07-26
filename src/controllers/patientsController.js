@@ -10,9 +10,11 @@ router.get('/', (req, res) => {
     })
 })
 
+// post method that creates a new patient and hashes the password during creation
 router.post('/', async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     if (req.body === false) return;
+    // here we are using object destructuring to be able to more easily target the password in order to hash in the try/catch statement
     let { pass, ...rest} = req.body
     try{
         const newPatient = await Patient.create({
@@ -31,7 +33,10 @@ router.post('/', async (req, res) => {
     }
 })
 
+// finds a patient by their id and deletes it (I chose to do find and delete on separate lines due to hearing somewhere that using the methods
+// that find and perform a crud method simultaneously have issues with security)
 router.delete('/:id', async (req, res) => {
+    if (req.params.id === false) return;
     try {
         const deletedPatient = await Patient.findById(req.params.id)
         deletedPatient.delete()
@@ -46,11 +51,29 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+
+// gets a patient by its id
 router.get('/:id', async (req, res) => {
+    if (req.params.id === false) return;
     try {
         const foundPatient = await Patient.findById(req.params.id)
         res.status(200).json({
             message: `${foundPatient} found`
+        })
+    } catch(err){
+        res.status(400).json({
+            message: `${err} occured`
+        })
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    if (req.params.id === false) return;
+    try {
+        const updatedPatient = await Patient.updateOne({ _id: req.params.id }, {$set: req.body}, { upsert: true })
+        
+        res.status(200).json({
+            message: `${updatedPatient} was updated`
         })
     } catch(err){
         res.status(400).json({
