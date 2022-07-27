@@ -5,6 +5,10 @@ const { Schema } = mongoose
 mongoose.connect(process.env.MONGO_STRING)
 
 const patientSchema = new Schema ({
+    role: { 
+        type: String, 
+        default: "Patient"
+    },
     firstName: {
         type: String,
         required: true

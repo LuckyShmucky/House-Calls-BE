@@ -74,10 +74,4 @@ router.get('/:id', (req, res) => {
     });
     });
 
-    module.exports = employeeRoute;
-
-
-
-
-
 module.exports = router
