@@ -21,7 +21,7 @@ House Calls is an application for people who would like access to a doctor but d
 
 ## medical doctors route 
 
-##### localhost:4000/medical-provider
+##### localhost:4000/medical-doctors
 
 - if you are using a read method this route will return a basica json object with a message letting you know that you have hit the correct route
 - This route can be used to create a new doctor with a post request and the correct request body
