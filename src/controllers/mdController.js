@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Provider = require('../models/medicalDoctor')
 const db = require('../models/medicalDoctor')
-
+const bcrypt = require('bcrypt')
 
 
 router.get('/', (req, res) => {
@@ -14,8 +14,12 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     console.log(req.body)
     if (req.body === false) return;
+    let { pass, ...rest} = req.body
     try{
-        const newProvider = await Provider.create(req.body)
+        const newProvider = await Provider.create({
+            ...rest,
+            pass : await bcrypt.hash(pass, 10)
+        })
         res.status(200).json({
             message: `${newProvider} was created`
         })

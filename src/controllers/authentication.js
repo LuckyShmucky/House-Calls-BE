@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Patient = require('../models/patient')
+const Doctor = require('../models/medicalDoctor')
 const bcrypt = require('bcrypt')
 
 
@@ -25,17 +26,30 @@ router.post('/:email', async (req, res) => {
             })
         } else {
             // if the two conditions from before are met then the server responds with the user information
-            try{
+            
                 res.status(200).json(foundPatient)
-            } catch(err){
-                res.status(400).json({
-                    message: `${err} occured`
-                }) 
+             
             }
+        } catch(err){
+        res.status(404).json({
+            message: `${err} occured`
+        })
+    }
+})
+
+router.post('/employee/:medicalDoctorEmail', async (req, res) => {
+    try{
+        const foundDoctor = await Doctor.findOne({ email: req.params.medicalDoctorEmail})
+        if (!foundDoctor || !await bcrypt.compare(req.body.pass, foundDoctor.pass)){
+            res.status(200).json(foundDoctor)
+            res.status(404).json({
+                message: 'wrong email or password'
+            })
+        } else {
+            res.status(200).json(foundDoctor)
         }
-   
     } catch(err){
-        res.status(400).json({
+        res.status(404).json({
             message: `${err} occured`
         })
     }
