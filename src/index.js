@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use('/patients', require('./controllers/patientsController.js'))
-app.use('/medical-provider', require('./controllers/mdController.js'))
+app.use('/medical-doctors', require('./controllers/mdController.js'))
 app.use('/authentication', require('./controllers/authentication.js'))
 
 app.get('/', (req, res) => {
