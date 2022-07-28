@@ -7,7 +7,8 @@ mongoose.connect(process.env.MONGO_STRING)
 const patientSchema = new Schema ({
     role: {
         type: String,
-        default: "Patient"
+        default: "Patient",
+        placeholder: "Patient"
     },
     firstName: {
         type: String,
@@ -34,7 +35,8 @@ const patientSchema = new Schema ({
         type: String,
         enum: [ 'Anal Pain', 'Anorexia', 'Cough', 'Chills', 'Constipation', 'Diarrhea', 'Eczema', 'Fever', 'Foot Pain',
     'Gas', 'Halitosis', 'Indigestion', 'Low Energry', 'Mood Swings', 'Nerve Pain', 'Pain (general)', 'Sneezing', 'Stomachache',
-    'Tonsillitis', 'Vomiting']
+    'Tonsillitis', 'Vomiting', 'NA'],
+    default: 'NA'
     }
     
 }, {toJSON: {virtuals: true}})

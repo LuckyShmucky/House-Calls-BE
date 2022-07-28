@@ -31,6 +31,24 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/patients', (req, res) => {
+    res.status(200).json({
+        message: 'Patients'
+    })
+})
+
+app.get('/medical-doctors', (req, res) => {
+    res.status(200).json({
+        message: 'Doctors'
+    })
+})
+
+app.get('/authentication', (req, res) => {
+    res.status(200).json({
+        message: 'Authenticating...'
+    })
+})
+
 app.get('*', (req, res) =>{
     res.status(404).json({
         message: "This url doesn't exist"
