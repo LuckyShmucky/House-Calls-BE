@@ -41,7 +41,7 @@ router.post('/employee/:medicalDoctorEmail', async (req, res) => {
     try{
         const foundDoctor = await Doctor.findOne({ email: req.params.medicalDoctorEmail})
         if (!foundDoctor || !await bcrypt.compare(req.body.pass, foundDoctor.pass)){
-            res.status(200).json(foundDoctor)
+            // res.status(200).json(foundDoctor)
             res.status(404).json({
                 message: 'wrong email or password'
             })
