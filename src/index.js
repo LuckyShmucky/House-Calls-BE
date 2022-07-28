@@ -23,6 +23,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/patients', require('./controllers/patientsController.js'))
 app.use('/medical-doctors', require('./controllers/mdController.js'))
 app.use('/authentication', require('./controllers/authentication.js'))
+app.use('/doctor-patient-communication', require('./controllers/chatController.js'))
 
 app.get('/', (req, res) => {
     res.status(200).json({
