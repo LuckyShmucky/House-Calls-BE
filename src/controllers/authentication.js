@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 
 router.get('/', (req, res) => {
     res.status(200).json({
-        message: "authenticating..."
+        message: "authenticating...."
     })
 })
 // while we are not actually creating anything in this route, we need the Front end to send 
