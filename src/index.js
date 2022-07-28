@@ -10,10 +10,16 @@ mongoose.connect(process.env.MONGO_STRING, function(){
 })
 
 
-app.options('*', cors())
+// app.options('*', cors())
+// Config / MiddleWare
+app.use(cors({
+    origin: '*'
+}))
 app.use(express.json())
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
+
+
 app.use('/patients', require('./controllers/patientsController.js'))
 app.use('/medical-doctors', require('./controllers/mdController.js'))
 app.use('/authentication', require('./controllers/authentication.js'))
