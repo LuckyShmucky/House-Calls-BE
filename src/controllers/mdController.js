@@ -73,5 +73,5 @@ router.get('/:id', (req, res) => {
     else res.json(`${provider} deleted` );
     });
     });
-
+    
 module.exports = router
