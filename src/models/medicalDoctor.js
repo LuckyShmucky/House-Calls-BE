@@ -5,7 +5,7 @@ mongoose.connect(process.env.MONGO_STRING);
 
 const medicalDoctorSchema = new Schema(
   {
-    role: { type: String, default: "Patient"},
+    role: { type: String, default: "Doctor", placeholder: "Doctor"},
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true },
