@@ -31,9 +31,11 @@ House Calls is an application for people who would like access to a doctor but d
 
 ##### localhost:4000/authentication/:patientEmail
 
-- this route was created to allow patients to sign in with their existing account. A post method must be used since you are sending something in the request body, which should contain the password. The patients' email must be included as the parameter in the url when querying
+- this route was created to allow patients to sign in with their existing account. Due to the structure of this route, a post method must be used since the request body needs to contain the password. 
+- The patients' email must be included as the parameter in the url when querying.
 
 
 ##### localhost:4000/authentication/employee/:medicalDoctorEmail
 
-- this route serves the same purpose as the authentication route for patients to sign in, but for doctors. The structure for both routes are almost identical. Just like for the patient sign in, this endpoint can be queried by using a post method containing a password and a url that contains the doctor's email as the parameter.
+- this route serves the same purpose as the authentication route for patients to sign in, but for doctors. 
+- The structure for both routes are almost identical. Just like for the patient sign in, this endpoint can be queried by using a post method containing a password and a url that contains the doctor's email as the parameter.
