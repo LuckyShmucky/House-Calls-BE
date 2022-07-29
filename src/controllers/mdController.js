@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Provider = require('../models/medicalDoctor')
-const db = require('../models/medicalDoctor')
 const bcrypt = require('bcrypt')
 
 
@@ -55,7 +54,7 @@ router.post('/', async (req, res) => {
     // here we are using object destructuring to be able to more easily target the password in order to hash in the try/catch statement
     let { pass, ...rest} = req.body
     try{
-        const newProvider = await Patient.create({
+        const newProvider = await Provider.create({
             ...rest,
             pass: await bcrypt.hash(pass, 10)
         })
