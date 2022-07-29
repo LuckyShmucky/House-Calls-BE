@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Provider = require('../models/medicalDoctor')
-const db = require('../models/medicalDoctor')
 const bcrypt = require('bcrypt')
 
 
@@ -72,7 +71,7 @@ router.post('/', async (req, res) => {
 
 //delete
 router.get('/:id', (req, res) => {
-    db.findByIdAndRemove({ _id: req.params.id }, function (err, provider) {
+    Provider.findByIdAndRemove({ _id: req.params.id }, function (err, provider) {
     if (err) res.json(err);
     else res.json(`${provider} deleted` );
     });
