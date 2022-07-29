@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// post method that creates a new Medical Provider and hashes the password during creation
 router.post('/', async (req, res) => {
     console.log(req.body)
     if (req.body === false) return;
@@ -34,7 +35,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     if (req.params.id === false) return;
     try {
-        const updateProvider = await Patient.updateOne({ _id: req.params.id }, {$set: req.body}, { upsert: true })
+        const updateProvider = await Provider.updateOne({ _id: req.params.id }, {$set: req.body}, { upsert: true })
         
         res.status(200).json({
             message: `${updateProvider} was updated`
