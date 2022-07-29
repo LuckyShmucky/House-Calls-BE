@@ -1,18 +1,38 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-mongoose.connect('mongodb+srv://Christian:Fc5E1NDTDndOVR6P@myfirstcluster.zfxo9.mongodb.net/House-Calls');
+
+mongoose.connect(process.env.MONGO_STRING,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopolgy: true
+    });
 
 const chatSchema = new Schema(
     {
-        author: { type: String, required: true },
-        content: { type: String, required: true},
-        interlocutor: {type: String, required: true }
+        doctor: { 
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "medicalProvider"
+        },
+        patient: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true, 
+            ref: "Patient"
+        },
+        // content: [{ 
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     required: true,
+        //     ref: "Message"
+        // }],
+        // add when message model is done
+        
 
     },
     {toJSON: { virtuals: true }}
 );
 
-const chat = mongoose.model("chat", chatSchema);
+// const chat = mongoose.model("medicalProvider", chatSchema);
+const Chat = mongoose.model('Chat', chatSchema)
+module.exports = Chat;
 
-module.exports = chat;
