@@ -1,7 +1,11 @@
 require('dotenv').config()
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-mongoose.connect('mongodb+srv://Christian:Fc5E1NDTDndOVR6P@myfirstcluster.zfxo9.mongodb.net/House-Calls');
+mongoose.connect(process.env.MONGO_STRING,
+  {
+      useNewUrlParser: true,
+      useUnifiedTopolgy: true
+  });
 
 const medicalDoctorSchema = new Schema(
   {
