@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
             message: `${newProvider} was created`
         })
     } catch(err){
+        console.log(err)
         res.status(400).json({
             message: `${err} occured`
         })

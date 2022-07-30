@@ -16,7 +16,14 @@ router.post('/', async (req, res) => {
     if (req.body === false) return;
     // here we are using object destructuring to be able to more easily target the password in order to hash in the try/catch statement
     let { pass, ...rest} = req.body
+    if (await Patient.findOne({email: req.body.email})){
+        res.status(400).json({
+            message: 'Email already has account'
+        });
+        return;
+    }
     try{
+        
         const newPatient = await Patient.create({
             ...rest,
             pass: await bcrypt.hash(pass, 10)
@@ -69,10 +76,10 @@ router.delete('/:id', async (req, res) => {
 // })
 
 // finds a patient by id and updates it by setting it to the request body
-router.put('/:id', async (req, res) => {
+router.put('/:email', async (req, res) => {
     if (req.params.id === false) return;
     try {
-        const updatedPatient = await Patient.updateOne({ _id: req.params.id }, {$set: req.body}, { upsert: true })
+        const updatedPatient = await Patient.updateOne({ email: req.params.email }, {$set: req.body})
         
         res.status(200).json({
             message: `${updatedPatient} was updated`
