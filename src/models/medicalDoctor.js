@@ -8,7 +8,6 @@ mongoose.connect(process.env.MONGO_STRING,
       useUnifiedTopolgy: true
   });
 
-
 const medicalDoctorSchema = new Schema(
   {
     role: { type: String, default: "Doctor", placeholder: "Doctor" },
