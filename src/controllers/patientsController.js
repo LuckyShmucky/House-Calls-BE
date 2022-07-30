@@ -44,6 +44,7 @@ router.post('/', async (req, res) => {
 // that find and perform a crud method simultaneously have issues with security)
 router.delete('/:id', async (req, res) => {
     if (req.params.id === false) return;
+    
     try {
         const deletedPatient = await Patient.findById(req.params.id)
         deletedPatient.delete()
@@ -78,8 +79,12 @@ router.delete('/:id', async (req, res) => {
 // finds a patient by id and updates it by setting it to the request body
 router.put('/:email', async (req, res) => {
     if (req.params.id === false) return;
+    let { pass, ...rest} = req.body
     try {
-        const updatedPatient = await Patient.updateOne({ email: req.params.email }, {$set: req.body})
+        const updatedPatient = await Patient.updateOne({ email: req.params.email }, {$set: {
+            ...rest,
+            pass: await bcrypt.hash(pass, 10)
+        }})
         
         res.status(200).json({
             message: `${updatedPatient} was updated`
