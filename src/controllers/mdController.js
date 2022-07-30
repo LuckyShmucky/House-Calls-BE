@@ -32,13 +32,17 @@ router.post('/', async (req, res) => {
 })
 
 //updating the provider by finding it by id
-router.put('/:id', async (req, res) => {
-    if (req.params.id === false) return;
+router.put('/:email', async (req, res) => {
+    if (req.params.email === false) return;
+    let {pass, ...rest} = req.body
     try {
-        const updateProvider = await Provider.updateOne({ _id: req.params.id }, {$set: req.body}, { upsert: true })
+        await Provider.updateOne({ email: req.params.email }, {$set: {
+            ...rest,
+            pass: await bcrypt.hash(pass, 10)
+        }})
         
         res.status(200).json({
-            message: `${updateProvider} was updated`
+            message: `account for ${req.params.email} was updated`
         })
     } catch(err){
         res.status(400).json({
