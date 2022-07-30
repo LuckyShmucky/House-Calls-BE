@@ -6,9 +6,9 @@ const cors = require("cors");
 const app = express();
 // mongoose.connect()
 mongoose.connect(
-  "mongodb+srv://Christian:Fc5E1NDTDndOVR6P@myfirstcluster.zfxo9.mongodb.net/House-Calls",
+  process.env.MONGO_STRING,
   function () {
-    console.log("connected to DB");
+    console.log("connected to DB", process.env.MONGO_STRING);
   }
 );
 
