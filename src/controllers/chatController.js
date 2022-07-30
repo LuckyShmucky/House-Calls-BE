@@ -1,21 +1,22 @@
 const express = require('express')
 const router = express.Router()
 const Chat = require('../models/chat')
+const Message = require('../models/message')
+const Patient = require('../models/patient')
+const medicalProvider = require('../models/medicalDoctor')
 
 router.get('/', (req, res) => {
     res.status(200).json({
-        message: "medical doctor"
+        message: "Welcome to chat route"
     })
 })
 
 //creating Chat
 router.post('/', async (req, res) => {
     if (req.body === false) return;
-    let { ...rest } = req.body
+    
     try{
-        const newChat = await Chat.create({
-            ...rest
-        })
+        const newChat = await Chat.create(req.body)
         res.status(200).json({
             message: `${newChat} created`
         })
@@ -27,6 +28,26 @@ router.post('/', async (req, res) => {
     }
     
 })
+
+
+router.post('/newMessage', async (req, res) => {
+    if (req.body === false) return;
+    
+    try{
+        const newMessage = await Message.create(req.body)
+        res.status(200).json({
+            message: `${newMessage} created`
+        })
+    } 
+    catch(err){
+        res.status(400).json({
+            message: `${err} occured`
+        })
+    }
+    
+})
+
+
 //getting the post by id
 router.get('/:id', async (req, res) => {
     if (req.params.id === false) return;

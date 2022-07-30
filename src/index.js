@@ -27,7 +27,7 @@ app.use("/patients", require("./controllers/patientsController.js"));
 app.use("/medical-doctors", require("./controllers/mdController.js"));
 app.use("/authentication", require("./controllers/authentication.js"));
 app.use(
-  "/doctor-patient-communication",
+  "/chat",
   require("./controllers/chatController.js")
 );
 
@@ -52,6 +52,12 @@ app.get("/medical-doctors", (req, res) => {
 app.get("/authentication", (req, res) => {
   res.status(200).json({
     message: "Authenticating...",
+  });
+});
+
+app.get("/authentication", (req, res) => {
+  res.status(200).json({
+    message: "Welcome to chat route",
   });
 });
 

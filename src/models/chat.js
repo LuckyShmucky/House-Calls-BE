@@ -20,12 +20,12 @@ const chatSchema = new Schema(
             required: true, 
             ref: "Patient"
         },
-        // content: [{ 
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     required: true,
-        //     ref: "Message"
-        // }],
-        // add when message model is done
+        content: [{ 
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Message"
+        }],
+        
         
 
     },
