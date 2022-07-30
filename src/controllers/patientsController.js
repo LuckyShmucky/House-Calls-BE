@@ -78,16 +78,16 @@ router.delete('/:id', async (req, res) => {
 
 // finds a patient by id and updates it by setting it to the request body
 router.put('/:email', async (req, res) => {
-    if (req.params.id === false) return;
+    if (req.params.email === false) return;
     let { pass, ...rest} = req.body
     try {
-        const updatedPatient = await Patient.updateOne({ email: req.params.email }, {$set: {
+        await Patient.updateOne({ email: req.params.email }, {$set: {
             ...rest,
             pass: await bcrypt.hash(pass, 10)
         }})
         
         res.status(200).json({
-            message: `${updatedPatient} was updated`
+            message: `account for ${req.params.email} was updated`
         })
     } catch(err){
         res.status(400).json({
