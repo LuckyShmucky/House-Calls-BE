@@ -15,7 +15,14 @@ const messageSchema = new Schema({
    author: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "Patient" || "medicalProvider"
+    refPath: 'onModel'
+    // This is allows us to dynamically reference different models, 
+    // so we can choose to refer to patients or doctors
+   },
+   onModel: {
+    type: String,
+    required: true,
+    enum: ['Patient', 'medicalProvider']
    }
 })
 
