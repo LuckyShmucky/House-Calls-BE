@@ -46,9 +46,9 @@ router.get('/:id', async (req, res) => {
 
 //delete
 router.get('/:id', (req, res) => {
-    db.findByIdAndRemove({ _id: req.params.id }, function (err, provider) {
+    db.findByIdAndRemove({ _id: req.params.id }, function (err, chat) {
     if (err) res.json(err);
-    else res.json(`${provider} deleted` );
+    else res.json(`${chat} deleted` );
     });
     });
 
