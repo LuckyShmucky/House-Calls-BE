@@ -18,13 +18,13 @@ const messageSchema = new Schema({
     refPath: 'onModel'
     // This is allows us to dynamically reference different models, 
     // so we can choose to refer to patients or doctors
-   },
+   }, 
    onModel: {
     type: String,
     required: true,
     enum: ['Patient', 'medicalProvider']
    }
-})
+}, {timestamps: true}, {toJSON: {virtuals: true}})
 
 const Message = mongoose.model('Message', messageSchema)
 module.exports = Message
