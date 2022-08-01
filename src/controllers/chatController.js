@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 })
 
 //creating Chat and adding that new chat to the "chats" field on both patient and doctors users involved in the chat
+// all that needs to be in the request body is the patient and doctor id
 router.post('/', async (req, res) => {
     if (req.body === false) return;
     console.log(req.body)
@@ -52,10 +53,18 @@ router.post('/', async (req, res) => {
 router.get('/:chatId', async (req, res) => {
     if(req.params.chatId === false) return;
     try{
-        const foundChat = await Chat.find({
+        await Chat.find({
             _id: req.params.chatId
+        }).
+        populate('content').
+        exec(function (err, success){
+            if (err){
+                console.log(err)
+            } else {
+                res.json(success)
+            }
         })
-        res.status(200).json(foundChat)
+        // res.status(200).json(foundChat)
     } catch(err){
     res.status(400).json({
             message: `${err} occured`
