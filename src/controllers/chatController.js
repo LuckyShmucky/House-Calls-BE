@@ -30,47 +30,53 @@ router.post('/', async (req, res) => {
 })
 
 
-router.post('/newMessage', async (req, res) => {
-    if (req.body === false) return;
-    
+
+router.get('/:chatId', async (req, res) => {
+    if(req.params.chatId === false) return;
     try{
-        const newMessage = await Message.create(req.body)
-        res.status(200).json({
-            message: `${newMessage} created`
+        const foundChat = await Chat.find({
+            _id: req.params.chatId
         })
-    } 
-    catch(err){
-        res.status(400).json({
+        res.status(200).json(foundChat)
+    } catch(err){
+    res.status(400).json({
             message: `${err} occured`
         })
     }
+})
+
+// pass in the chat id and post new messages to that chat
+// router.get('/:chatId', async (req, res) => {
+//     // if (req.body === false) return;
+//     try{
+//     const foundChat = await Chat.find({ _id: req.params.chat})      
+//     res.status(200).json(foundChat);
+//     console.log(foundChat)
+//     } catch(err){
+//         res.json({
+//             message: `${err} occured`
+//         })
+//     }
     
-})
+
+    // try{
+    //     const newMessage = await Message.create(req.body)
+    //     res.status(200).json({
+    //         message: `${newMessage} created`
+    //     })
+    // } 
+    // catch(err){
+    //     res.status(400).json({
+    //         message: `${err} occured`
+    //     })
+    // }
+    
+// })
 
 
-//getting the post by id
-router.get('/:id', async (req, res) => {
-    if (req.params.id === false) return;
-    try {
-        const chat = await Chat.findById(req.params.id)
-        res.status(200).json({
-            message: `${chat} posted`
-        })
-    }
-    catch(err){
-        console.log(err)
-        res.status(400).json({
-            message: `${err} occured`
-        })
-    }
-})
 
-//delete
-router.get('/:id', (req, res) => {
-    db.findByIdAndRemove({ _id: req.params.id }, function (err, chat) {
-    if (err) res.json(err);
-    else res.json(`${chat} deleted` );
-    });
-    });
+
+
+
 
     module.exports = router
