@@ -11,12 +11,30 @@ router.get('/', (req, res) => {
     })
 })
 
-//creating Chat
+//creating Chat and adding that new chat to the "chats" field on both patient and doctors users involved in the chat
 router.post('/', async (req, res) => {
     if (req.body === false) return;
+    console.log(req.body)
     
     try{
         const newChat = await Chat.create(req.body)
+        // console.log(newChat.patient)
+        Patient.findOneAndUpdate({_id: newChat.patient}, {$push: {chats: newChat.id}},
+            function(error, success){
+                if (error){
+                    console.log(error)
+                } else{
+                    console.log(success)
+                }
+            })
+        medicalProvider.findOneAndUpdate({_id: newChat.doctor}, {$push: {chats: newChat.id}},
+            function(error, success){
+                if (error){
+                    console.log(error)
+                } else{
+                    console.log(success)
+                }
+            })
         res.status(200).json({
             message: `${newChat} created`
         })
@@ -50,7 +68,7 @@ router.post('/messages/:chatId', async (req, res) => {
     try{
               
        const newMessage = await Message.create(req.body)
-       console.log(newMessage.id)
+    //    console.log(newMessage.id)
        const foundChat = Chat.findOneAndUpdate({_id: req.params.chatId}, {$push: {content: newMessage.id}},
         function(error, success){
             if (error){

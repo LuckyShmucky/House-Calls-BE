@@ -26,6 +26,7 @@ const patientSchema = new Schema(
     email: {
       type: String,
       required: true,
+      unique: true
     },
     pass: {
       type: String,
@@ -43,7 +44,14 @@ const patientSchema = new Schema(
     'Gas', 'Halitosis', 'Indigestion', 'Low Energry', 'Mood Swings', 'Nerve Pain', 'Pain (general)', 'Sneezing', 'Stomachache',
     'Tonsillitis', 'Vomiting', 'NA'],
     default: 'NA'
-    }]
+    }],
+    chats: { 
+      type: [{ 
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Chat"
+  }],
+  required: true 
+  }
     
 }, {toJSON: {virtuals: true}})
 
