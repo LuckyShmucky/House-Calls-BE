@@ -20,11 +20,13 @@ const chatSchema = new Schema(
             required: true, 
             ref: "Patient"
         },
-        content: [{ 
+        content: { 
+            type: [{ 
             type: mongoose.Schema.Types.ObjectId,
-            required: true,
             ref: "Message"
         }],
+        required: true 
+        },
         
         
 
