@@ -3,11 +3,10 @@ const router = express.Router()
 const Provider = require('../models/medicalDoctor')
 const bcrypt = require('bcrypt')
 
-
-router.get('/', (req, res) => {
-    res.status(200).json({
-        message: "medical doctor"
-    })
+// finds the first ten doctors, need to be refractored in a way that changes the limit 
+router.get('/', async (req, res) => {
+    const allDoctors = await Provider.find().sort({ _id: 1 }).limit(10)
+    res.status(200).json(allDoctors)
 })
 
 // post method that creates a new Medical Provider and hashes the password during creation
