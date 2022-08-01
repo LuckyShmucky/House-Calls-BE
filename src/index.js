@@ -27,7 +27,7 @@ app.use("/patients", require("./controllers/patientsController.js"));
 app.use("/medical-doctors", require("./controllers/mdController.js"));
 app.use("/authentication", require("./controllers/authentication.js"));
 app.use(
-  "/chat",
+  "/chats",
   require("./controllers/chatController.js")
 );
 
