@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
 })
 
 
-
+// finding a chat by id
 router.get('/:chatId', async (req, res) => {
     if(req.params.chatId === false) return;
     try{
@@ -45,19 +45,27 @@ router.get('/:chatId', async (req, res) => {
     }
 })
 
-// pass in the chat id and post new messages to that chat
-// router.get('/:chatId', async (req, res) => {
-//     // if (req.body === false) return;
-//     try{
-//     const foundChat = await Chat.find({ _id: req.params.chat})      
-//     res.status(200).json(foundChat);
-//     console.log(foundChat)
-//     } catch(err){
-//         res.json({
-//             message: `${err} occured`
-//         })
-//     }
-    
+// adding a new message to a chat
+router.post('/messages/:chatId', async (req, res) => {
+    try{
+              
+       const newMessage = await Message.create(req.body)
+       console.log(newMessage.id)
+       const foundChat = Chat.findOneAndUpdate({_id: req.params.chatId}, {$push: {content: newMessage.id}},
+        function(error, success){
+            if (error){
+                console.log(error)
+            } else{
+                res.status(200).json(success)
+            }
+        })
+      
+    } catch(err){
+        res.status(400).json({
+            message: `${err} occured`
+        })
+    }
+})
 
     // try{
     //     const newMessage = await Message.create(req.body)
