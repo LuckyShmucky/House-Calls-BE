@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 // all that needs to be in the request body is the patient and doctor id
 router.post('/', async (req, res) => {
     if (req.body === false) return;
-    console.log(req.body)
+    // console.log(req.body)
     
     try{
         const newChat = await Chat.create(req.body)
