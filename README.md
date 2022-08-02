@@ -2,7 +2,9 @@
 
 House Calls is an application for people who would like access to a doctor but don't want to leave the house. This is the Back end app for House Call service.
 
+# Relationship Model
 
+![Relationship Model](https://postimg.cc/t1L4TKxw "Optional title")
 
 ## APi Endpoints
 
