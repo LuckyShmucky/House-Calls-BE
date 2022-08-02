@@ -4,7 +4,7 @@ House Calls is an application for people who would like access to a doctor but d
 
 # Relationship Model
 
-![Relationship Model](https://postimg.cc/t1L4TKxw "Optional title")
+![Relationship Model](https://i.postimg.cc/fLbtHZTz/House-Calls-Models.png "Optional title")
 
 ## APi Endpoints
 
