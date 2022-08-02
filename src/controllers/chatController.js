@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         Patient.findOneAndUpdate({_id: newChat.patient}, {$push: {chats: newChat.id}},
             function(error, success){
                 if (error){
-                    console.log(error)
+                    console.log(error, 'chatController.js line 26')
                 } else{
                     console.log(success)
                 }
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         medicalProvider.findOneAndUpdate({_id: newChat.doctor}, {$push: {chats: newChat.id}},
             function(error, success){
                 if (error){
-                    console.log(error)
+                    console.log(error, 'chatController.js line 34')
                 } else{
                     console.log(success)
                 }
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
     } 
     catch(err){
         res.status(400).json({
-            message: `${err} occured`
+            message: `${err} occured in `
         })
     }
     
@@ -53,17 +53,21 @@ router.post('/', async (req, res) => {
 router.get('/:chatId', async (req, res) => {
     if(req.params.chatId === false) return;
     try{
-        await Chat.find({
+        const populatedChat = await Chat.findOne({
             _id: req.params.chatId
         }).
         populate('content').
-        exec(function (err, success){
+        exec(async function (err, data){
             if (err){
-                console.log(err)
+                console.log(err, '')
             } else {
-                res.json(success)
+            let messages = []
+            data.content.map(i => messages.push(i.text))  
+            res.json(messages)
             }
+
         })
+        
         // res.status(200).json(foundChat)
     } catch(err){
     res.status(400).json({
