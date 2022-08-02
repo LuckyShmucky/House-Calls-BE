@@ -20,29 +20,36 @@ router.post('/', async (req, res) => {
     try{
         const newChat = await Chat.create(req.body)
         // console.log(newChat.patient)
-        Patient.findOneAndUpdate({_id: newChat.patient}, {$push: {chats: newChat.id}},
+        newChat.save(function(err, success){
+            if (err){
+                console.log(err, 'chat controller line 25 on root post route')
+            } else {
+                res.status(200).json(success.id)
+            }
+        })
+       
+       Patient.updateOne({_id: newChat.patient}, {$push: {chats: newChat.id}},
             function(error, success){
                 if (error){
                     console.log(error, 'chatController.js line 26')
                 } else{
-                    console.log(success)
+                    console.log('a new chat has been created')
                 }
             })
-        medicalProvider.findOneAndUpdate({_id: newChat.doctor}, {$push: {chats: newChat.id}},
+        
+        medicalProvider.updateOne({_id: newChat.doctor}, {$push: {chats: newChat.id}},
             function(error, success){
                 if (error){
                     console.log(error, 'chatController.js line 34')
-                } else{
-                    console.log(success)
                 }
             })
-        res.status(200).json({
-            message: `${newChat} created`
-        })
+        // res.status(200).json({
+        //     message: `${newChat} created`
+        // })
     } 
     catch(err){
         res.status(400).json({
-            message: `${err} occured in `
+            message: `${err} occured in chat controller line 52 `
         })
     }
     
