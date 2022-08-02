@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
 router.get('/:chatId', async (req, res) => {
     if(req.params.chatId === false) return;
     try{
-        const populatedChat = await Chat.findOne({
+          Chat.findOne({
             _id: req.params.chatId
         }).
         populate('content').
@@ -129,6 +129,31 @@ router.get('/patientChats/:id', (req, res) => {
             }
         })
     
+})
+
+router.get('/doctorChats/:id', (req, res) => {
+    
+    Chat.find({doctor: req.params.id}, function(error, data){
+        if (error){
+           console.log(error, 'finding chats in chat controller line 112')
+           res.json(error, 'finding chats in chat controller line 112')
+
+        } else {
+            try{
+
+                let response = []
+                data.map(i => response.push(i._id) )
+                console.log(response)
+                res.status(200).json({
+                    message: 'array of chat ids',
+                    data: response
+                })
+            } catch(err){
+                console.log(err, 'chatController line 152')
+            }
+        }
+    })
+
 })
 
 
