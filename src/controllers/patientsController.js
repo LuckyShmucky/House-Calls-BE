@@ -42,11 +42,11 @@ router.post('/', async (req, res) => {
 
 // finds a patient by their id and deletes it (I chose to do find and delete on separate lines due to hearing somewhere that using the methods
 // that find and perform a crud method simultaneously have issues with security)
-router.delete('/:id', async (req, res) => {
-    if (req.params.id === false) return;
+router.delete('/:email', async (req, res) => {
+    if (req.params.email === false) return;
     
     try {
-        const deletedPatient = await Patient.findById(req.params.id)
+        const deletedPatient = await Patient.findById(req.params.email)
         deletedPatient.delete()
         res.status(200).json({
             message: `${deletedPatient} deleted`
@@ -58,23 +58,6 @@ router.delete('/:id', async (req, res) => {
         })
     }
 })
-
-
-// gets a patient by their email
-// router.get('/:email', async (req, res) => {
-//     if (req.params.email === false) return;
-//     try {
-//         const foundPatient = await Patient.findOne({ email: req.params.email })
-//         if (!foundPatient || !await bcrypt.compare(req.body.password))
-//         res.status(200).json({
-//             message: `${foundPatient} found`
-//         })
-//     } catch(err){
-//         res.status(400).json({
-//             message: `${err} occured`
-//         })
-//     }
-// })
 
 // finds a patient by id and updates it by setting it to the request body
 router.put('/:email', async (req, res) => {
