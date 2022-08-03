@@ -8,7 +8,7 @@ const app = express();
 mongoose.connect(
   process.env.MONGO_STRING,
   function () {
-    console.log("connected to DB", process.env.MONGO_STRING);
+    console.log("connected to DB");
   }
 );
 
