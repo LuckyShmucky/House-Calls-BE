@@ -1,7 +1,7 @@
 # House-Calls-BE
 
 
-House Calls is an application for people who would like access to a doctor but don't want to leave the house. Users can login and speak to a multiple different doctors, allowing people to get multiple opinions about their health. This is the back end app for House Call service.
+House Calls is an application for people who would like access to a doctor but don't want to leave the house. Users can login and speak to a multiple different doctors, allowing people to get multiple opinions about their health. This is the back end for the House Calls application.
 
 # Relationship Model
 
