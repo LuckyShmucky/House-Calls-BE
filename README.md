@@ -7,8 +7,18 @@ House Calls is an application for people who would like access to a doctor but d
 
 ![Relationship Model](https://i.postimg.cc/fLbtHZTz/House-Calls-Models.png "Optional title")
 
-## Bugs or Features That Need To Be Addressed
-- [ ]  bug
+## Issues or Features That Need To Be Addressed
+- [ ] Currently there is no way for users to find a another user with a search bar or page that displays all other users. The only way users can start a chat is by using the document id from MongoDB to identify the person they are trying to communicate with. This could be changed by enabling users to find other people by their name or email.
+- [ ] There is an endpoint that returns the first ten doctors in the collection, however it needs to be refractored to be return increments of ten doctors (not just the first ten).
+- [ ] To make the project more scalable the patient and doctor models could be reduced to just one model (user). This, in turn, would require a decent amount of changes to be made, but would make the code more dry and would utilize authorization more effectively.
+
+## Technologies Used
+- Node 
+- Express
+- Cors
+- Bcrypt
+- Mongoose
+- Dotenv
 
 ## APi Endpoints
 
