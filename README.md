@@ -25,7 +25,7 @@ House Calls is an application for people who would like access to a doctor but d
 ### https://house-calls-be.herokuapp.com/
 - https://house-calls-be.herokuapp.com/ 
 
-## patients route 
+## Patients route 
 ##### https://house-calls-be.herokuapp.com/patients
 
 - If you are using a read method this route will return a basic json object with a message letting you know that you have hit the correct route
@@ -114,7 +114,7 @@ router.put('/:email', async (req, res) => {
 })
 
 ```
-## medical doctors route 
+## Medical Doctors route 
 
 ##### https://house-calls-be.herokuapp.com/medical-doctors
 
@@ -151,7 +151,7 @@ router.post('/', async (req, res) => {
 
 ```
 
-## authentication route
+## Authentication route
 
 
 ##### https://house-calls-be.herokuapp.com/authentication/:patientEmail
