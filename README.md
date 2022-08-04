@@ -7,6 +7,9 @@ House Calls is an application for people who would like access to a doctor but d
 
 ![Relationship Model](https://i.postimg.cc/fLbtHZTz/House-Calls-Models.png "Optional title")
 
+## Bugs or Features That Need To Be Addressed
+- [ ]  bug
+
 ## APi Endpoints
 
 ### https://house-calls-be.herokuapp.com/
