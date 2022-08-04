@@ -20,6 +20,10 @@ House Calls is an application for people who would like access to a doctor but d
 - Mongoose
 - Dotenv
 
+## Deployed URL 
+
+- https://dashboard.heroku.com/apps/house-calls-be
+
 ## APi Endpoints
 
 ### https://house-calls-be.herokuapp.com/
